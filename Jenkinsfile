@@ -3,7 +3,7 @@ pipeline {
         stages {
         stage('First') {
                 steps {
-                echo  env.berejob="True"
+                echo  env.execute="True"
                 }
         }
         stage('Second'){
@@ -12,7 +12,7 @@ pipeline {
                 }
 
                  when {
-                        environment name: 'berejob',
+                        environment name: 'execute',
                         value:'True'
             }
         }
@@ -21,7 +21,7 @@ pipeline {
                 sh 'echo "Step Three"'
             }
                 when {
-                        environment name: 'berejob',
+                        environment name: 'execute',
                         value:'False'
             }
         }
