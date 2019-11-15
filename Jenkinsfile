@@ -1,20 +1,29 @@
 pipeline {
         agent any
         stages {
-        stage('One') {
+        stage('First') {
                 steps {
-                sh 'echo "Step One"'
+                echo  env.berejob="True"
                 }
         }
-        stage('Two'){
-                steps {
-                sh 'echo "Step Two"'
+        stage('Second'){
+                steps{
+                 sh 'echo "Updating Second Stage"'
                 }
+
+                 when {
+                        environment name: 'berejob',
+                        value:'True'
+            }
         }
-        stage('Three') {
-                steps {
+         stage('Three') {
+            steps {
                 sh 'echo "Step Three"'
-                }
+            }
+                when {
+                        environment name: 'berejob',
+                        value:'False'
+            }
         }
-    }
+     }		
 }
